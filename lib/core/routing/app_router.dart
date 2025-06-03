@@ -3,11 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_body/core/di/dependency_injecion.dart';
 import 'package:home_body/features/home/data/models/get_trainers_response.dart';
 import 'package:home_body/features/login/data/repos/login_repo_imp.dart';
+import 'package:home_body/features/login/presentation/screens/add_profile_screen.dart';
+import 'package:home_body/features/profile/data/repos/get_profile_repo_imp.dart';
+import 'package:home_body/features/profile/presentation/bloc/profile_cubit.dart';
 import 'package:home_body/features/register/data/repos/register_repo_imp.dart';
 import 'package:home_body/features/register/presentation/bloc/register_cubit.dart';
 import 'package:home_body/features/login/presentation/bloc/login_cubit.dart';
 import 'package:home_body/features/on_boarding/ui/on_boarding_screen.dart';
 
+import '../../features/login/data/repos/add_profile_repo_imp.dart';
 import '../../features/payment/logic/booking_cubit.dart';
 import '../../features/payment/ui/booking_screen.dart';
 import '../../features/payment/ui/widgets/booking_complete.dart';
@@ -21,7 +25,7 @@ class AppRouter {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
-          builder: (_) => OnBoardingScreen(),
+          builder: (_) => const OnBoardingScreen(),
         );
       case Routes.layoutScreen:
         return MaterialPageRoute(
@@ -40,10 +44,12 @@ class AppRouter {
         );
 
       case Routes.loginScreen:
+        ProfileCubit profileCubit =
+            ProfileCubit(getIt(), getIt<AddProfileRepoImp>());
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
               create: (BuildContext context) =>
-                  LoginCubit(getIt<LoginRepoImp>()),
+                  LoginCubit(getIt<LoginRepoImp>(), profileCubit),
               child: const LoginScreen()),
         );
       case Routes.registerScreen:
@@ -52,6 +58,13 @@ class AppRouter {
               create: (BuildContext context) =>
                   RegisterCubit(getIt<RegisterRepoImp>()),
               child: const RegisterScreen()),
+        );
+      case Routes.addProfileScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+              create: (BuildContext context) => ProfileCubit(
+                  getIt<GetProfileRepoImp>(), getIt<AddProfileRepoImp>()),
+              child: const AddProfileScreen()),
         );
       default:
         return MaterialPageRoute(

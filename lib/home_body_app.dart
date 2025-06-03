@@ -20,11 +20,12 @@ class HomeBodyApp extends StatelessWidget {
           scaffoldBackgroundColor: AppColors.scaffoldColor,
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: AppConstants.isLogged
-            ? Routes.layoutScreen
-            : AppConstants.onBordingSeen
-                ? Routes.loginScreen
-                : Routes.onBoardingScreen,
+        initialRoute: Routes.loginScreen,
+        //  AppConstants.isLogged
+        //     ? Routes.layoutScreen
+        //     : AppConstants.onBordingSeen
+        //         ? Routes.loginScreen
+        //         : Routes.onBoardingScreen,
         onGenerateRoute: appRouter.generateRoute,
       ),
     );

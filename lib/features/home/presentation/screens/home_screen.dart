@@ -8,6 +8,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // print(context.read<HomeCubit>().getProfileResponse?.fullName);
     return PageView.builder(
       controller: context.read<HomeCubit>().pageController,
       itemBuilder: (context, index) =>

@@ -1,3 +1,4 @@
 class LoginApiConstants {
-  static const loginUrl = 'auth/login';
+  static const String loginUrl = 'auth/login';
+  static const String getProfileUrl = '/customer/profile';
 }

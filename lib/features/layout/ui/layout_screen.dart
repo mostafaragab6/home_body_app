@@ -6,6 +6,7 @@ import '../../../core/theming/app_colors.dart';
 import '../../../core/theming/text_styles.dart';
 import '../constants/navigation_bar_constants.dart';
 
+// ignore: must_be_immutable
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({super.key});
 

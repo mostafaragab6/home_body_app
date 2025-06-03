@@ -8,7 +8,9 @@ import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   final TagsRepoImp _tagsRepoImp;
-  HomeCubit(this._tagsRepoImp) : super(const HomeState.initial());
+  HomeCubit(
+    this._tagsRepoImp,
+  ) : super(const HomeState.initial());
 
   PageController pageController = PageController();
   TextEditingController numberOfSessionsController = TextEditingController();
@@ -17,6 +19,7 @@ class HomeCubit extends Cubit<HomeState> {
   TextEditingController countryController =
       TextEditingController(text: 'Saudi');
   String selectedDate = '';
+  // GetProfileResponse? getProfileResponse;
 
   List<int> tagsId = [];
   Trainers? profile = Trainers.fromJson({});

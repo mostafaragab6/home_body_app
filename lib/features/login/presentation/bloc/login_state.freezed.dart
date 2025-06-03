@@ -78,9 +78,9 @@ class Loading<T> implements LoginState<T> {
 /// @nodoc
 
 class Success<T> implements LoginState<T> {
-  const Success(this.data);
+  const Success(this.response);
 
-  final T data;
+  final GetProfileResponse response;
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
@@ -94,16 +94,16 @@ class Success<T> implements LoginState<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Success<T> &&
-            const DeepCollectionEquality().equals(other.data, data));
+            (identical(other.response, response) ||
+                other.response == response));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(runtimeType, response);
 
   @override
   String toString() {
-    return 'LoginState<$T>.success(data: $data)';
+    return 'LoginState<$T>.success(response: $response)';
   }
 }
 
@@ -113,7 +113,7 @@ abstract mixin class $SuccessCopyWith<T, $Res>
   factory $SuccessCopyWith(Success<T> value, $Res Function(Success<T>) _then) =
       _$SuccessCopyWithImpl;
   @useResult
-  $Res call({T data});
+  $Res call({GetProfileResponse response});
 }
 
 /// @nodoc
@@ -127,13 +127,13 @@ class _$SuccessCopyWithImpl<T, $Res> implements $SuccessCopyWith<T, $Res> {
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? data = freezed,
+    Object? response = null,
   }) {
     return _then(Success<T>(
-      freezed == data
-          ? _self.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as T,
+      null == response
+          ? _self.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as GetProfileResponse,
     ));
   }
 }
@@ -192,6 +192,70 @@ class _$ErrorCopyWithImpl<T, $Res> implements $ErrorCopyWith<T, $Res> {
     Object? error = null,
   }) {
     return _then(Error<T>(
+      null == error
+          ? _self.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class GetProfileError<T> implements LoginState<T> {
+  const GetProfileError(this.error);
+
+  final String error;
+
+  /// Create a copy of LoginState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $GetProfileErrorCopyWith<T, GetProfileError<T>> get copyWith =>
+      _$GetProfileErrorCopyWithImpl<T, GetProfileError<T>>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is GetProfileError<T> &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  @override
+  String toString() {
+    return 'LoginState<$T>.getProfileError(error: $error)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $GetProfileErrorCopyWith<T, $Res>
+    implements $LoginStateCopyWith<T, $Res> {
+  factory $GetProfileErrorCopyWith(
+          GetProfileError<T> value, $Res Function(GetProfileError<T>) _then) =
+      _$GetProfileErrorCopyWithImpl;
+  @useResult
+  $Res call({String error});
+}
+
+/// @nodoc
+class _$GetProfileErrorCopyWithImpl<T, $Res>
+    implements $GetProfileErrorCopyWith<T, $Res> {
+  _$GetProfileErrorCopyWithImpl(this._self, this._then);
+
+  final GetProfileError<T> _self;
+  final $Res Function(GetProfileError<T>) _then;
+
+  /// Create a copy of LoginState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(GetProfileError<T>(
       null == error
           ? _self.error
           : error // ignore: cast_nullable_to_non_nullable

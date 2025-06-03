@@ -61,24 +61,24 @@ class RecommendedTrainersListViewItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            'ahmed yassen',
+                            data.fullName ?? '',
                             style: TextStyles.font18Black500(),
                           ),
                           Text(
-                            'Body Building Trainer',
+                            data.bio ?? '',
                             style: TextStyles.font14Grey400(),
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.only(end: 14.0.w),
                             child: Row(
+                              spacing: 5.w,
                               children: [
                                 Text(
                                   'From',
                                   style: TextStyles.font14Grey400(),
                                 ),
-                                const Spacer(),
                                 Text(
-                                  '120EGP/session',
+                                  data.price.toString(),
                                   style: TextStyles.font14Primary400().copyWith(
                                       color: AppColors.primary.withOpacity(0.7),
                                       decoration: TextDecoration.underline,

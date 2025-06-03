@@ -4,12 +4,15 @@ import 'package:home_body/core/helpers/shared_prefs_helper.dart';
 import 'package:home_body/core/shared/shared_pref_keys.dart';
 import 'package:home_body/features/login/data/models/login_request.dart';
 import 'package:home_body/features/login/data/repos/login_repo_imp.dart';
+import 'package:home_body/features/profile/presentation/bloc/profile_cubit.dart';
 
 import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final LoginRepoImp _loginRepoImp;
-  LoginCubit(this._loginRepoImp) : super(LoginState.initial());
+  final ProfileCubit profileCubit;
+  LoginCubit(this._loginRepoImp, this.profileCubit)
+      : super(LoginState.initial());
 
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -34,8 +37,20 @@ class LoginCubit extends Cubit<LoginState> {
         await SharedPrefHelper.setSecuredString(
             SharedPrefKeys.refreshToken, success.data?.refreshToken ?? '');
         print(success.data?.accessToken);
-        emit(LoginState.success(success));
+        getProfile();
       },
     );
+  }
+
+  void getProfile() async {
+    await profileCubit.getProfile();
+
+    if (profileCubit.state is GetProfileErrorState) {
+      final errorState = profileCubit.state as GetProfileErrorState;
+      emit(LoginState.getProfileError(errorState.errMessage));
+    } else if (profileCubit.state is GetProfileSuccessState) {
+      final result = profileCubit.state as GetProfileSuccessState;
+      emit(LoginState.success(result.response));
+    }
   }
 }

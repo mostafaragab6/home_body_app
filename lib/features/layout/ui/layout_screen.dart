@@ -17,11 +17,13 @@ class LayoutScreen extends StatefulWidget {
 class _LayoutScreenState extends State<LayoutScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body:
-          NavigationBarConstants.screens[NavigationBarConstants.selectedIndex],
-      bottomNavigationBar: customNavigationBar(),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: NavigationBarConstants
+            .screens[NavigationBarConstants.selectedIndex],
+        bottomNavigationBar: customNavigationBar(),
+      ),
     );
   }
 

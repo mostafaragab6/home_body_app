@@ -21,25 +21,25 @@ class RegisterContainerBody extends StatelessWidget {
           style: TextStyles.font20Primary600(),
         ),
         SizedBox(
-          height: 21.h,
+          height: 15.h,
         ),
-        RegisterForm(),
+        const RegisterForm(),
         SizedBox(
-          height: 18.h,
+          height: 15.h,
         ),
-        DividerRow(),
+        const DividerRow(),
         SizedBox(
-          height: 34.h,
+          height: 10.h,
         ),
-        SocialRow(),
+        const SocialRow(),
         SizedBox(
-          height: 25.h,
+          height: 10.h,
         ),
-        TermsAndPoliciesCheck(),
+        const TermsAndPoliciesCheck(),
         SizedBox(
-          height: 25.h,
+          height: 20.h,
         ),
-        RegisterButtonAndRichText(),
+        const RegisterButtonAndRichText(),
       ],
     );
   }

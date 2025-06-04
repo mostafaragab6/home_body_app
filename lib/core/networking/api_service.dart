@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-
 import '../helpers/shared_prefs_helper.dart';
 import '../shared/shared_pref_keys.dart';
 import 'api_constants.dart';

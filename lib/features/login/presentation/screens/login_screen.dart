@@ -9,27 +9,29 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: 1.sh,
-          child: Stack(
-            children: [
-              SizedBox(
-                width: double.infinity,
-                height: 426.h,
-                child: Image.asset(
-                  'assets/imgs/login_image.png',
-                  fit: BoxFit.cover,
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        body: SingleChildScrollView(
+          child: SizedBox(
+            height: 1.sh,
+            child: Stack(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: 426.h,
+                  child: Image.asset(
+                    'assets/imgs/login_image.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: LoginContainer(),
-              ),
-              LogoContainer(),
-            ],
+                const Align(
+                  alignment: Alignment.bottomCenter,
+                  child: LoginContainer(),
+                ),
+                const LogoContainer(),
+              ],
+            ),
           ),
         ),
       ),

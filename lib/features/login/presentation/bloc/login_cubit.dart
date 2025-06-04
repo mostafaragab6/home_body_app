@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_body/core/helpers/shared_prefs_helper.dart';
+import 'package:home_body/core/networking/api_service.dart';
 import 'package:home_body/core/shared/shared_pref_keys.dart';
 import 'package:home_body/features/login/data/models/login_request.dart';
 import 'package:home_body/features/login/data/repos/login_repo_imp.dart';
@@ -36,6 +37,8 @@ class LoginCubit extends Cubit<LoginState> {
             SharedPrefKeys.accessToken, success.data?.accessToken ?? '');
         await SharedPrefHelper.setSecuredString(
             SharedPrefKeys.refreshToken, success.data?.refreshToken ?? '');
+        ApiService.setTokenIntoHeaderAfterLogin(
+            success.data?.accessToken ?? '');
         print(success.data?.accessToken);
         getProfile();
       },

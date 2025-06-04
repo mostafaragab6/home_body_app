@@ -10,7 +10,7 @@ class AddProfileRepoImp extends AddProfileRepo {
   final ApiService _apiService;
   AddProfileRepoImp(this._apiService);
   @override
-  Future<Either<void, ErrorHandler>> addProfile(
+  Future<Either<String, ErrorHandler>> addProfile(
       AddProfileRequest addProfileRequest) async {
     try {
       await _apiService.post(
@@ -18,8 +18,9 @@ class AddProfileRepoImp extends AddProfileRepo {
         data: addProfileRequest.toJson(),
       );
 
-      return const Left(null);
+      return const Left('Success');
     } catch (error) {
+      print(error);
       return Right(ServerFailure(error.toString()));
     }
   }

@@ -13,20 +13,22 @@ class LoginContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: ClipPath(
-        clipper: TopCurveClipper(),
-        child: Container(
-          width: size.width,
-          height: 615.h,
-          padding:
-              EdgeInsetsDirectional.only(start: 20.w, end: 20.w, top: 86.h),
-          decoration: BoxDecoration(
-            color: AppColors.veryLightPrimary,
-            borderRadius: BorderRadius.circular(16),
+    return SafeArea(
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: ClipPath(
+          clipper: TopCurveClipper(),
+          child: Container(
+            width: size.width,
+            height: 615.h,
+            padding:
+                EdgeInsetsDirectional.only(start: 20.w, end: 20.w, top: 86.h),
+            decoration: BoxDecoration(
+              color: AppColors.veryLightPrimary,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: const LoginContainerBody(),
           ),
-          child: LoginContainerBody(),
         ),
       ),
     );

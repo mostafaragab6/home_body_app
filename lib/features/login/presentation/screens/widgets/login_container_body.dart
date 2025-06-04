@@ -23,27 +23,27 @@ class LoginContainerBody extends StatelessWidget {
           style: TextStyles.font20Primary600(),
         ),
         SizedBox(
-          height: 21.h,
+          height: 15.h,
         ),
-        LoginForm(),
+        const LoginForm(),
         SizedBox(
           height: 15.h,
         ),
-        RememberMeAndForgetPass(),
+        const RememberMeAndForgetPass(),
         SizedBox(
-          height: 44.h,
+          height: 22.h,
         ),
-        DividerRow(),
+        const DividerRow(),
         SizedBox(
-          height: 44.h,
+          height: 22.h,
         ),
         BlocProvider(
             create: (BuildContext context) => ContinueWithSocialCubit(),
-            child: SocialRow()),
+            child: const SocialRow()),
         SizedBox(
-          height: 60.h,
+          height: 40.h,
         ),
-        LoginButtonAndRichText(),
+        const LoginButtonAndRichText(),
       ],
     );
   }

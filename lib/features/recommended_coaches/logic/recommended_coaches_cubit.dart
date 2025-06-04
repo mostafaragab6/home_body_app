@@ -13,8 +13,8 @@ class RecommendedCoachesCubit extends Cubit<RecommendedCoachesState> {
     required this.getTrainersRepoImp,
   }) : super(const RecommendedCoachesState.initial()) {
     getTrainersRequest = GetTrainersRequest(
-      city ?? 'Aswan',
-      country ?? 'Egypt',
+      city ?? 'El-Riyad',
+      country ?? 'Saudi',
       tags ?? [1],
     );
   }
@@ -26,7 +26,6 @@ class RecommendedCoachesCubit extends Cubit<RecommendedCoachesState> {
   late GetTrainersRequest getTrainersRequest;
 
   void getTrainers() async {
-    print('a7a');
     emit(const RecommendedCoachesState.getTrainersLoading());
 
     var response = await getTrainersRepoImp.getTrainers(getTrainersRequest);
